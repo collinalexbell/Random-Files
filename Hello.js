@@ -40,7 +40,7 @@ var contact_list = {
 
 //Main Loop
 var main_loop = function(){
-    console.log("Welcome to the UTOP command center")
+    console.log("Welcome to the UTOP command center. How can I help you?")
     choices = [mission_statement, make_tea, contact_list]
 
     num = 0
