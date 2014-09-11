@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<body>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+		socket.on('connect', function() {
+				console.log("connected")
+		});
+		socket.on('movement', function(data) {
+				console.log(data)
+		});
+</script>
+
+<h1>Evo</h1>
+{% for phrase in things_to_say.Morning %}
+<button>{{phrase}}</button>
+{% endfor %}
+
+<form action = "/workout" method = "post">
+	<input type="submit" name="workout" value="Let's Workout"/>
+</form>
+
+
+
+</body>
+</html>
+

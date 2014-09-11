@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src={{url_for('static', filename='jquery-1.11.1.min.js')}}></script>
+	</head>
+<body>
+	<script type = "text/javascript">
+    var count = 0
+		function print_task(task){
+			var task_div = document.getElementById('task_zone');
+			var new_div = document.createElement('div');
+			task_div.appendChild(new_div)
+			new_div.innerHTML = task
+		}
+
+		function remove_task(task){
+			$.post( "/remove_task", {task:task}, function(data){
+					location.reload()
+					});
+		}
+
+		
+	</script>
+
+<h1>Tasks</h1>
+
+
+<p>Selected Task: </p>
+<p name="selected_task">{{selected_task}}</p> 
+
+
+<form name="input" action="/add_task" method="post">
+	Task: <input type="text" name="task" id='task'>
+	<input name="task_submit" type="submit" value="Submit">
+</form>
+
+<div id="task_zone">
+	{% for task in tasks %}
+		<script>
+			print_task({{task|safe}})
+		</script>
+		<button onclick="remove_task({{task}})">Remove Task</button>
+	{% endfor %}
+</div>
+<form action = "/rand_sel" method = "post">
+	<input type="submit" name="task_select" value="Randomly Select Task"/>
+</form>
+
+
+
+</body>
+</html>
+
