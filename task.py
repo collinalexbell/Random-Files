@@ -26,6 +26,7 @@ def add_task():
 @app.route('/rand_sel', methods = ['POST'])
 def rand_sel():
     task = task_model.randomly_select_task()
+    print(task)
     voice.say(task)
     return redirect(url_for('home', selected_task = task) )
 
